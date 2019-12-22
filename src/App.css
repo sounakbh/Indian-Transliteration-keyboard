@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  
+}
+.textfield {
+  background-color: white;
+}
+.spacing {
+  margin-top: 4%
+}
+.header {
+  margin-top: 6%;
+  margin-bottom: 4%;
+  text-align: center;
+  color: white;
+  font-size: 120%;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  height: 60px;
+  background-color: #23272a;
+  text-align: center;
+}
