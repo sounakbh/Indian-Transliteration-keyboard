@@ -1,6 +1,6 @@
 ## Instructions
 ```javascript
-cd ofl-fetch
+cd Indian-Transliteration-keyboard
 npm install
 npm start
 ```
