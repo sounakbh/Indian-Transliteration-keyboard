@@ -9,13 +9,19 @@ class Translation extends React.Component {
         backgroundColor: "#3498db"
       }
     }
+    const {itrans, wordList} = this.props;
+    // pushing into wordlist array if itrans is not present
+    if(wordList.indexOf(itrans) === -1) {
+      wordList.push(itrans)
+    }
     return (
       <div className="App">
         <Grid container spacing={3}>
           <Grid item xs={4}>
           </Grid>
           <Grid item xs={4}>
-            {this.props.wordList.map((item) => {
+            {/* returning every element in the wordlist */}
+            {wordList.map((item) => {
               return(
                 <Paper key={item.key} style={styles.paper}>
                   <Typography variant="h6" component="h4">

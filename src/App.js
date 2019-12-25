@@ -1,6 +1,6 @@
 import React from 'react';
 import Translation from './components/translation';
-import {TextField, FormControl, Select} from '@material-ui/core'
+import {FormControl, Select} from '@material-ui/core'
 import {Helmet} from 'react-helmet';
 import './App.css';
 
@@ -10,20 +10,21 @@ class App extends React.Component {
     this.state = {
       items: [],
       word: '',
+      itrans: '',
       selectValue: 'hindi'
     }
   }
-
+  // fetcing the data
   handleChange = (event) => {
     this.setState({word: event.target.value});
     fetch(`http://146.148.85.67/processWordJSON?inString=${this.state.word}&lang=${this.state.selectValue}`)
       .then(res => res.json())
       .then(json => {
         this.setState({items: json['twords']['0']['options']});
-        console.log(this.state.items)
+        this.setState({itrans: json['itrans']});
       });
   } 
-
+  // handlechange on textarea
   handleValueChange = (e) => {
     this.setState({selectValue:e.target.value});
   }
@@ -37,15 +38,17 @@ class App extends React.Component {
         <div className="header">
           <h1>Transliterator</h1>  
         </div> 
-        <TextField  
+        
+        <textarea
           className="textfield"
           value={this.state.word} 
           onChange={this.handleChange} 
           type='text' 
-          placeholder="Enter a word" 
-          variant="outlined" />
-        
-        <FormControl variant="outlined"  className="textfield">
+          placeholder="Enter a word">
+
+        </textarea>
+        {/* options for the various languages */}
+        <FormControl variant="outlined"  className="form">
           <Select
             native
             value={this.state.selectValue}
@@ -64,8 +67,9 @@ class App extends React.Component {
             <option value="nepali">Nepali</option>
           </Select>
       </FormControl>
+        {/* rendering the output */}
         <div className="spacing">
-          <Translation wordList={this.state.items}/> 
+          <Translation itrans={this.state.itrans} wordList={this.state.items}/> 
         </div>
         <footer>
           <p>&#169; Sounak Bhattacharya</p>
